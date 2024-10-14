@@ -1,0 +1,1465 @@
+{
+	"info": {
+		"_postman_id": "bafcf51e-e29b-42d6-beb3-46087337f965",
+		"name": "APIs User Phone",
+		"description": "Esta API proporciona operaciones relacionadas con usuarios y teléfonos. Incluye autenticación, manejo de usuarios y administración de dispositivos.\n\nContact Support:\n Name: Equipo de Soporte\n Email: alejandro.sandoval@ugm.cl",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19856654"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "{id}",
+					"item": [
+						{
+							"name": "Obtener usuario por ID",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"console.log(\"Token usado:\", pm.globals.get(\"token\"));"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/users/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "0f9cca44-c75a-46d2-bfc4-329e24e38c5d"
+										}
+									]
+								},
+								"description": "Retorna un usuario específico con base en su ID"
+							},
+							"response": [
+								{
+									"name": "Usuario encontrado",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/users/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{}"
+								},
+								{
+									"name": "Usuario no encontrado",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/users/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{}"
+								}
+							]
+						},
+						{
+							"name": "Actualizar un usuario existente",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": \"<uuid>\",\n  \"username\": \"<string>\",\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"password\": \"<string>\",\n  \"phones\": [\n    {\n      \"id\": \"<long>\",\n      \"number\": \"<string>\",\n      \"citycode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"user_id\": \"<uuid>\",\n      \"user\": {\n        \"value\": \"<Circular reference to #/components/schemas/User detected>\"\n      }\n    },\n    {\n      \"id\": \"<long>\",\n      \"number\": \"<string>\",\n      \"citycode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"user_id\": \"<uuid>\",\n      \"user\": {\n        \"value\": \"<Circular reference to #/components/schemas/User detected>\"\n      }\n    }\n  ],\n  \"created\": \"<dateTime>\",\n  \"modified\": \"<dateTime>\",\n  \"lastLogin\": \"<dateTime>\",\n  \"token\": \"<string>\",\n  \"isActive\": \"<boolean>\",\n  \"role\": \"ADMIN\",\n  \"authorities\": [\n    {\n      \"authority\": \"<string>\"\n    },\n    {\n      \"authority\": \"<string>\"\n    }\n  ],\n  \"accountNonExpired\": \"<boolean>\",\n  \"accountNonLocked\": \"<boolean>\",\n  \"credentialsNonExpired\": \"<boolean>\",\n  \"enabled\": \"<boolean>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/users/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "0f9cca44-c75a-46d2-bfc4-329e24e38c5d",
+											"description": "(Required) "
+										}
+									]
+								},
+								"description": "Actualiza los detalles de un usuario existente por ID"
+							},
+							"response": [
+								{
+									"name": "Usuario actualizado exitosamente",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id\": \"<uuid>\",\n  \"username\": \"<string>\",\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"password\": \"<string>\",\n  \"phones\": [\n    {\n      \"id\": \"<long>\",\n      \"number\": \"<string>\",\n      \"citycode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"user_id\": \"<uuid>\",\n      \"user\": {\n        \"value\": \"<Circular reference to #/components/schemas/User detected>\"\n      }\n    },\n    {\n      \"id\": \"<long>\",\n      \"number\": \"<string>\",\n      \"citycode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"user_id\": \"<uuid>\",\n      \"user\": {\n        \"value\": \"<Circular reference to #/components/schemas/User detected>\"\n      }\n    }\n  ],\n  \"created\": \"<dateTime>\",\n  \"modified\": \"<dateTime>\",\n  \"lastLogin\": \"<dateTime>\",\n  \"token\": \"<string>\",\n  \"isActive\": \"<boolean>\",\n  \"role\": \"ADMIN\",\n  \"authorities\": [\n    {\n      \"authority\": \"<string>\"\n    },\n    {\n      \"authority\": \"<string>\"\n    }\n  ],\n  \"accountNonExpired\": \"<boolean>\",\n  \"accountNonLocked\": \"<boolean>\",\n  \"credentialsNonExpired\": \"<boolean>\",\n  \"enabled\": \"<boolean>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/users/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{}"
+								},
+								{
+									"name": "Usuario no encontrado",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id\": \"<uuid>\",\n  \"username\": \"<string>\",\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"password\": \"<string>\",\n  \"phones\": [\n    {\n      \"id\": \"<long>\",\n      \"number\": \"<string>\",\n      \"citycode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"user_id\": \"<uuid>\",\n      \"user\": {\n        \"value\": \"<Circular reference to #/components/schemas/User detected>\"\n      }\n    },\n    {\n      \"id\": \"<long>\",\n      \"number\": \"<string>\",\n      \"citycode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"user_id\": \"<uuid>\",\n      \"user\": {\n        \"value\": \"<Circular reference to #/components/schemas/User detected>\"\n      }\n    }\n  ],\n  \"created\": \"<dateTime>\",\n  \"modified\": \"<dateTime>\",\n  \"lastLogin\": \"<dateTime>\",\n  \"token\": \"<string>\",\n  \"isActive\": \"<boolean>\",\n  \"role\": \"ADMIN\",\n  \"authorities\": [\n    {\n      \"authority\": \"<string>\"\n    },\n    {\n      \"authority\": \"<string>\"\n    }\n  ],\n  \"accountNonExpired\": \"<boolean>\",\n  \"accountNonLocked\": \"<boolean>\",\n  \"credentialsNonExpired\": \"<boolean>\",\n  \"enabled\": \"<boolean>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/users/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{}"
+								},
+								{
+									"name": "Error interno del servidor",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id\": \"<uuid>\",\n  \"username\": \"<string>\",\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"password\": \"<string>\",\n  \"phones\": [\n    {\n      \"id\": \"<long>\",\n      \"number\": \"<string>\",\n      \"citycode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"user_id\": \"<uuid>\",\n      \"user\": {\n        \"value\": \"<Circular reference to #/components/schemas/User detected>\"\n      }\n    },\n    {\n      \"id\": \"<long>\",\n      \"number\": \"<string>\",\n      \"citycode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"user_id\": \"<uuid>\",\n      \"user\": {\n        \"value\": \"<Circular reference to #/components/schemas/User detected>\"\n      }\n    }\n  ],\n  \"created\": \"<dateTime>\",\n  \"modified\": \"<dateTime>\",\n  \"lastLogin\": \"<dateTime>\",\n  \"token\": \"<string>\",\n  \"isActive\": \"<boolean>\",\n  \"role\": \"ADMIN\",\n  \"authorities\": [\n    {\n      \"authority\": \"<string>\"\n    },\n    {\n      \"authority\": \"<string>\"\n    }\n  ],\n  \"accountNonExpired\": \"<boolean>\",\n  \"accountNonLocked\": \"<boolean>\",\n  \"credentialsNonExpired\": \"<boolean>\",\n  \"enabled\": \"<boolean>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/users/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{}"
+								}
+							]
+						},
+						{
+							"name": "Eliminar un usuario por ID",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"console.log(\"Token usado:\", pm.globals.get(\"token\"));"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/users/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "8ea83beb-1d1a-4ed8-bb8c-55e9a8ae05de",
+											"description": "(Required) "
+										}
+									]
+								},
+								"description": "Elimina un usuario específico por ID"
+							},
+							"response": [
+								{
+									"name": "Usuario eliminado exitosamente",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/users/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{}"
+								},
+								{
+									"name": "Usuario no encontrado",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/users/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{}"
+								},
+								{
+									"name": "Error interno del servidor",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/users/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Obtener todos los usuarios",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"console.log(\"Token usado:\", pm.globals.get(\"token\"));",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"console.log(\"Token usado:\", pm.globals.get(\"token\"));"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users"
+							]
+						},
+						"description": "Retorna una lista de todos los usuarios junto con sus teléfonos"
+					},
+					"response": [
+						{
+							"name": "Usuarios obtenidos exitosamente",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/users",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": "{}"
+						},
+						{
+							"name": "No se encontraron usuarios",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/users",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": "{}"
+						},
+						{
+							"name": "Error interno del servidor",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/users",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": "{}"
+						}
+					]
+				},
+				{
+					"name": "Crear un nuevo usuario",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": \"<uuid>\",\n  \"username\": \"<string>\",\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"password\": \"<string>\",\n  \"phones\": [\n    {\n      \"id\": \"<long>\",\n      \"number\": \"<string>\",\n      \"citycode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"user_id\": \"<uuid>\",\n      \"user\": {\n        \"value\": \"<Circular reference to #/components/schemas/User detected>\"\n      }\n    },\n    {\n      \"id\": \"<long>\",\n      \"number\": \"<string>\",\n      \"citycode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"user_id\": \"<uuid>\",\n      \"user\": {\n        \"value\": \"<Circular reference to #/components/schemas/User detected>\"\n      }\n    }\n  ],\n  \"created\": \"<dateTime>\",\n  \"modified\": \"<dateTime>\",\n  \"lastLogin\": \"<dateTime>\",\n  \"token\": \"<string>\",\n  \"isActive\": \"<boolean>\",\n  \"role\": \"ADMIN\",\n  \"authorities\": [\n    {\n      \"authority\": \"<string>\"\n    },\n    {\n      \"authority\": \"<string>\"\n    }\n  ],\n  \"accountNonExpired\": \"<boolean>\",\n  \"accountNonLocked\": \"<boolean>\",\n  \"credentialsNonExpired\": \"<boolean>\",\n  \"enabled\": \"<boolean>\"\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users"
+							]
+						},
+						"description": "Crea un nuevo usuario con uno o más teléfonos"
+					},
+					"response": [
+						{
+							"name": "Usuario creado exitosamente",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": \"<uuid>\",\n  \"username\": \"<string>\",\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"password\": \"<string>\",\n  \"phones\": [\n    {\n      \"id\": \"<long>\",\n      \"number\": \"<string>\",\n      \"citycode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"user_id\": \"<uuid>\",\n      \"user\": {\n        \"value\": \"<Circular reference to #/components/schemas/User detected>\"\n      }\n    },\n    {\n      \"id\": \"<long>\",\n      \"number\": \"<string>\",\n      \"citycode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"user_id\": \"<uuid>\",\n      \"user\": {\n        \"value\": \"<Circular reference to #/components/schemas/User detected>\"\n      }\n    }\n  ],\n  \"created\": \"<dateTime>\",\n  \"modified\": \"<dateTime>\",\n  \"lastLogin\": \"<dateTime>\",\n  \"token\": \"<string>\",\n  \"isActive\": \"<boolean>\",\n  \"role\": \"ADMIN\",\n  \"authorities\": [\n    {\n      \"authority\": \"<string>\"\n    },\n    {\n      \"authority\": \"<string>\"\n    }\n  ],\n  \"accountNonExpired\": \"<boolean>\",\n  \"accountNonLocked\": \"<boolean>\",\n  \"credentialsNonExpired\": \"<boolean>\",\n  \"enabled\": \"<boolean>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/users",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": "{}"
+						},
+						{
+							"name": "Error al crear el usuario: debe tener al menos un teléfono",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": \"<uuid>\",\n  \"username\": \"<string>\",\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"password\": \"<string>\",\n  \"phones\": [\n    {\n      \"id\": \"<long>\",\n      \"number\": \"<string>\",\n      \"citycode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"user_id\": \"<uuid>\",\n      \"user\": {\n        \"value\": \"<Circular reference to #/components/schemas/User detected>\"\n      }\n    },\n    {\n      \"id\": \"<long>\",\n      \"number\": \"<string>\",\n      \"citycode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"user_id\": \"<uuid>\",\n      \"user\": {\n        \"value\": \"<Circular reference to #/components/schemas/User detected>\"\n      }\n    }\n  ],\n  \"created\": \"<dateTime>\",\n  \"modified\": \"<dateTime>\",\n  \"lastLogin\": \"<dateTime>\",\n  \"token\": \"<string>\",\n  \"isActive\": \"<boolean>\",\n  \"role\": \"ADMIN\",\n  \"authorities\": [\n    {\n      \"authority\": \"<string>\"\n    },\n    {\n      \"authority\": \"<string>\"\n    }\n  ],\n  \"accountNonExpired\": \"<boolean>\",\n  \"accountNonLocked\": \"<boolean>\",\n  \"credentialsNonExpired\": \"<boolean>\",\n  \"enabled\": \"<boolean>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/users",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": "{}"
+						},
+						{
+							"name": "Error interno del servidor",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": \"<uuid>\",\n  \"username\": \"<string>\",\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"password\": \"<string>\",\n  \"phones\": [\n    {\n      \"id\": \"<long>\",\n      \"number\": \"<string>\",\n      \"citycode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"user_id\": \"<uuid>\",\n      \"user\": {\n        \"value\": \"<Circular reference to #/components/schemas/User detected>\"\n      }\n    },\n    {\n      \"id\": \"<long>\",\n      \"number\": \"<string>\",\n      \"citycode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"user_id\": \"<uuid>\",\n      \"user\": {\n        \"value\": \"<Circular reference to #/components/schemas/User detected>\"\n      }\n    }\n  ],\n  \"created\": \"<dateTime>\",\n  \"modified\": \"<dateTime>\",\n  \"lastLogin\": \"<dateTime>\",\n  \"token\": \"<string>\",\n  \"isActive\": \"<boolean>\",\n  \"role\": \"ADMIN\",\n  \"authorities\": [\n    {\n      \"authority\": \"<string>\"\n    },\n    {\n      \"authority\": \"<string>\"\n    }\n  ],\n  \"accountNonExpired\": \"<boolean>\",\n  \"accountNonLocked\": \"<boolean>\",\n  \"credentialsNonExpired\": \"<boolean>\",\n  \"enabled\": \"<boolean>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/users",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": "{}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "phones",
+			"item": [
+				{
+					"name": "{id}",
+					"item": [
+						{
+							"name": "get Phone By Id",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/phones/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"phones",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "<long>",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/phones/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"phones",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": \"<long>\",\n  \"number\": \"<string>\",\n  \"citycode\": \"<string>\",\n  \"country\": \"<string>\",\n  \"user_id\": \"<uuid>\",\n  \"user\": {\n    \"value\": \"<Circular reference to #/components/schemas/User detected>\"\n  }\n}"
+								}
+							]
+						},
+						{
+							"name": "update Phone",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": \"<long>\",\n  \"number\": \"<string>\",\n  \"citycode\": \"<string>\",\n  \"country\": \"<string>\",\n  \"user_id\": \"<uuid>\",\n  \"user\": {\n    \"value\": \"<Circular reference to #/components/schemas/User detected>\"\n  }\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/phones/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"phones",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "<long>",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id\": \"<long>\",\n  \"number\": \"<string>\",\n  \"citycode\": \"<string>\",\n  \"country\": \"<string>\",\n  \"user_id\": \"<uuid>\",\n  \"user\": {\n    \"value\": \"<Circular reference to #/components/schemas/User detected>\"\n  }\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/phones/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"phones",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": \"<long>\",\n  \"number\": \"<string>\",\n  \"citycode\": \"<string>\",\n  \"country\": \"<string>\",\n  \"user_id\": \"<uuid>\",\n  \"user\": {\n    \"value\": \"<Circular reference to #/components/schemas/User detected>\"\n  }\n}"
+								}
+							]
+						},
+						{
+							"name": "delete Phone",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/phones/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"phones",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "<long>",
+											"description": "(Required) "
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/phones/:id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"phones",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "get All Phones",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/phones",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"phones"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/phones",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"phones"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"id\": \"<long>\",\n    \"number\": \"<string>\",\n    \"citycode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"user_id\": \"<uuid>\",\n    \"user\": {\n      \"value\": \"<Circular reference to #/components/schemas/User detected>\"\n    }\n  },\n  {\n    \"id\": \"<long>\",\n    \"number\": \"<string>\",\n    \"citycode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"user_id\": \"<uuid>\",\n    \"user\": {\n      \"value\": \"<Circular reference to #/components/schemas/User detected>\"\n    }\n  }\n]"
+						}
+					]
+				},
+				{
+					"name": "create Phone",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": \"<long>\",\n  \"number\": \"<string>\",\n  \"citycode\": \"<string>\",\n  \"country\": \"<string>\",\n  \"user_id\": \"<uuid>\",\n  \"user\": {\n    \"value\": \"<Circular reference to #/components/schemas/User detected>\"\n  }\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/phones",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"phones"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": \"<long>\",\n  \"number\": \"<string>\",\n  \"citycode\": \"<string>\",\n  \"country\": \"<string>\",\n  \"user_id\": \"<uuid>\",\n  \"user\": {\n    \"value\": \"<Circular reference to #/components/schemas/User detected>\"\n  }\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/phones",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"phones"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "*/*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"id\": \"<long>\",\n  \"number\": \"<string>\",\n  \"citycode\": \"<string>\",\n  \"country\": \"<string>\",\n  \"user_id\": \"<uuid>\",\n  \"user\": {\n    \"value\": \"<Circular reference to #/components/schemas/User detected>\"\n  }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "register",
+					"item": [
+						{
+							"name": "register",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Alejandro Sandoval\",\n  \"email\": \"alejandro.sandoval@ugm.cl\",\n  \"password\": \"p2\",\n  \"phones\": [\n\t{\n\t  \"number\": \"963038688\",\n\t  \"citycode\": \"2\",\n\t  \"countrycode\": \"56\"\n\t}\n  ]\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"username\": \"<string>\",\n  \"password\": \"<string>\",\n  \"token\": \"<string>\",\n  \"lastLogin\": \"<dateTime>\",\n  \"modified\": \"<dateTime>\",\n  \"isActive\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/auth/register",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"register"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"token\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "login",
+					"item": [
+						{
+							"name": "login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();",
+											"pm.environment.set(\"token\", jsonData.token);",
+											"pm.globals.set(\"token\", jsonData.token);",
+											"console.log(\"Token guardado:\", pm.globals.get(\"token\"));",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "*/*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"asandoval\",\n  \"password\": \"alejandro123\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept",
+												"value": "*/*"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"username\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/auth/login",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"login"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "*/*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"token\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080/testnisum"
+		}
+	]
+}
