@@ -169,7 +169,10 @@ Este diagrama muestra los componentes principales de la aplicación, incluyendo 
 
 Este proyecto incluye integración continua configurada mediante **GitHub Actions**. Cada vez que se realiza un push o pull request en la rama principal, se ejecutan automáticamente las pruebas y se construye el proyecto.
 
-![Diagrama de la Arquitectura](github.png)
+![Integracion Github](github.png)
+![Runner](github2.png)
+![Runner](github2.png)
+![Runner](github3.png)
 
 
 ## Pruebas Unitarias
