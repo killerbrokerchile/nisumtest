@@ -1,4 +1,4 @@
-# Desafío Nisum Java Spring Security
+# Proyecto SpringBoot Security - GitHub Action
 
 ## Descripción
 
@@ -168,6 +168,9 @@ Este diagrama muestra los componentes principales de la aplicación, incluyendo 
 ## CI/CD
 
 Este proyecto incluye integración continua configurada mediante **GitHub Actions**. Cada vez que se realiza un push o pull request en la rama principal, se ejecutan automáticamente las pruebas y se construye el proyecto.
+
+![Diagrama de la Arquitectura](github.png)
+
 
 ## Pruebas Unitarias
 
