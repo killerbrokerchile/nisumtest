@@ -15,7 +15,7 @@ Esta API RESTful está desarrollada en Java con Spring Boot y permite la gestió
 - **Maven** - Herramienta para la gestión de dependencias y el build.
 - **JUnit** - Pruebas unitarias para asegurar la calidad del código.
 
-## Endpoints de la API
+## Endpoints de la API ######
 
 ### Usuarios
 
