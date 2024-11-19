@@ -8,7 +8,7 @@ on:
     inputs:
       path-file-all:
         description: 'Ruta del archivo'
-        required: true
+        required: false
         default: '/GRCHDSW1/swgrvone/reception/GVT_001234-D241118-H183623-ALL.chg'
 
 jobs:
