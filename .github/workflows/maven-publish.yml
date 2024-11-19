@@ -44,8 +44,8 @@ jobs:
       id: show-info
       run: |
         echo "Path File All: ${{ github.event.inputs.path-file-all }}"
-        echo "run-number=${{ github.run_number }}" >> $GITHUB_ENV
-        echo "path-file-all=${{ github.event.inputs.path-file-all }}" >> $GITHUB_ENV
+        echo "::set-output name=path-file-all::${{ github.event.inputs.path-file-all }}"
+        echo "::set-output name=run-number::${{ github.run_number }}"
         
 
     - name: Output summary
@@ -53,3 +53,4 @@ jobs:
         echo "Resumen del Workflow:"
         echo "Ruta del archivo: ${{ steps.show-info.outputs.path-file-all }}"
         echo "Número de ejecución: ${{ steps.show-info.outputs.run-number }}"
+
