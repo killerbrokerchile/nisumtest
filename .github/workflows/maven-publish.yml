@@ -44,13 +44,17 @@ jobs:
       run: |
         echo "Inputs disponibles:"
         echo "${{ toJson(github.event.inputs) }}"
-
+        
     - name: Show inputs and context
       id: show-info
       run: |
         echo "Path File All: ${{ github.event.inputs.path-file-all }}"
-        echo "::set-output name=path-file-all::${{ github.event.inputs.path-file-all }}"
-        echo "::set-output name=run-number::${{ github.run_number }}"
+        echo "Run Number: ${{ github.run_number }}"
+        echo "path-file-all=${{ github.event.inputs.path-file-all }}" >> $GITHUB_ENV
+        echo "run-number=${{ github.run_number }}" >> $GITHUB_ENV
+      env:
+        path-file-all: ${{ github.event.inputs.path-file-all }}
+        run-number: ${{ github.run_number }}
 
     - name: Output summary
       run: |
