@@ -3,7 +3,7 @@ name: Maven Test Workflow
 on:
   push:
     branches:
-      - main # Ejecutar en la rama main
+      - main
   workflow_dispatch:
     inputs:
       path-file-all:
@@ -40,17 +40,50 @@ jobs:
     - name: Run Maven tests
       run: mvn test
 
+    - name: Debug Inputs
+      run: |
+        echo "Inputs disponibles:"
+        echo "${{ toJson(github.event.inputs) }}"
+
     - name: Show inputs and context
       id: show-info
       run: |
         echo "Path File All: ${{ github.event.inputs.path-file-all }}"
         echo "::set-output name=path-file-all::${{ github.event.inputs.path-file-all }}"
         echo "::set-output name=run-number::${{ github.run_number }}"
-        
 
     - name: Output summary
       run: |
         echo "Resumen del Workflow:"
         echo "Ruta del archivo: ${{ steps.show-info.outputs.path-file-all }}"
         echo "Número de ejecución: ${{ steps.show-info.outputs.run-number }}"
+      env:
+        PATH_FILE_ALL: ${{ steps.show-info.outputs.path-file-all }}
+        RUN_NUMBER: ${{ steps.show-info.outputs.run-number }}
 
+    - name: Send Teams Notification
+      run: |
+        echo "### Resumen del Workflow" > message.md
+        echo "#### Información del Workflow" >> message.md
+        echo "" >> message.md
+        echo "<table style='width: 100%; border-collapse: collapse; box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);'>" >> message.md
+        echo "  <tr style='background-color: #f2f2f2;'>" >> message.md
+        echo "    <th style='text-align: left; padding: 8px;'>Step</th>" >> message.md
+        echo "    <th style='text-align: left; padding: 8px;'>Estado</th>" >> message.md
+        echo "    <th style='text-align: left; padding: 8px;'>Enlace</th>" >> message.md
+        echo "  </tr>" >> message.md
+        echo "  <tr>" >> message.md
+        echo "    <td style='padding: 8px;'>Run Maven tests</td>" >> message.md
+        echo "    <td style='padding: 8px;'>Completado</td>" >> message.md
+        echo "    <td style='padding: 8px;'><a href='https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}'>Ver Workflow</a></td>" >> message.md
+        echo "  </tr>" >> message.md
+        echo "  <tr>" >> message.md
+        echo "    <td style='padding: 8px;'>Show inputs and context</td>" >> message.md
+        echo "    <td style='padding: 8px;'>Completado</td>" >> message.md
+        echo "    <td style='padding: 8px;'><a href='https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}'>Ver Inputs</a></td>" >> message.md
+        echo "  </tr>" >> message.md
+        echo "</table>" >> message.md
+        echo "" >> message.md
+        echo "#### Detalles" >> message.md
+        echo "- Ruta del archivo: \`${{ env.PATH_FILE_ALL }}\`" >> message.md
+        echo "- Número de ejecución: \`${{ env.RUN_NUMBER }}\`" >> message.md
