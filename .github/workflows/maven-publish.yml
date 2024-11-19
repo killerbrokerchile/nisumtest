@@ -3,7 +3,7 @@ name: Maven Test Workflow
 on:
   push:
     branches:
-      - main # Ejecutar en la rama main (puedes cambiarla por otra si lo prefieres)
+      - main # Ejecutar en la rama main
   workflow_dispatch:
     inputs:
       path-file-all:
@@ -14,6 +14,10 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+
+    outputs:
+      path-file-all: ${{ steps.show-info.outputs.path-file-all }}
+      run-number: ${{ steps.show-info.outputs.run-number }}
 
     steps:
     - name: Checkout code
@@ -47,5 +51,5 @@ jobs:
     - name: Output summary
       run: |
         echo "Resumen del Workflow:"
-        echo "Ruta del archivo: ${{ env.path-file-all }}"
-        echo "Número de ejecución: ${{ env.run-number }}"
+        echo "Ruta del archivo: ${{ steps.show-info.outputs.path-file-all }}"
+        echo "Número de ejecución: ${{ steps.show-info.outputs.run-number }}"
