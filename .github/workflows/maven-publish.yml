@@ -44,9 +44,9 @@ jobs:
       id: show-info
       run: |
         echo "Path File All: ${{ github.event.inputs.path-file-all }}"
-        echo "Run Number: ${{ github.run_number }}"
-        echo "::set-output name=path-file-all::${{ github.event.inputs.path-file-all }}"
-        echo "::set-output name=run-number::${{ github.run_number }}"
+        echo "run-number=${{ github.run_number }}" >> $GITHUB_ENV
+        echo "path-file-all=${{ github.event.inputs.path-file-all }}" >> $GITHUB_ENV
+        
 
     - name: Output summary
       run: |
