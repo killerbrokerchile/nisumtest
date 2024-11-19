@@ -9,7 +9,7 @@ on:
       path-file-all:
         description: 'Ruta del archivo'
         required: true
-        default: '/GRCHDSW1/swgrvone/reception/GVT_00XXXX-D241118-H183623-ALL.chg'
+        default: '/GRCHDSW1/swgrvone/reception/GVT_001234-D241118-H183623-ALL.chg'
 
 jobs:
   test:
